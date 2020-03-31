@@ -1,21 +1,21 @@
 import React from 'react';
-import { Router, Link, RouteComponentProps } from "@reach/router"
+import { Router, Link } from "@reach/router"
+import { Home } from './routes/Home';
+import styled from "@emotion/styled";
 
-const TestA = ({ path }: RouteComponentProps) => <p>A</p>;
-const TestB = ({ path }: RouteComponentProps) => <p>B</p>;
+const Main = styled.main`width: 100%;`
 
 function App() {
   return (
     <>
       <nav>
-        <Link to="/">Home</Link> <Link to="b">B</Link>
+        <Link to="/">Home</Link> <Link to="blog">Blog</Link>
       </nav>
-      <main>
+      <Main>
         <Router>
-          <TestA path="/" />
-          <TestB path="b" />
+          <Home path="/" />
         </Router>
-      </main>
+      </Main>
       <footer>
         &copy; Zbigniew Żołnierowicz {new Date().getFullYear()}
       </footer>

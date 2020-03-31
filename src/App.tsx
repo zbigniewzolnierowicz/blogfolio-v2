@@ -1,9 +1,6 @@
 import React from 'react';
 import { Router, Link } from "@reach/router"
 import { Home } from './routes/Home';
-import styled from "@emotion/styled";
-
-const Main = styled.main`width: 100%;`
 
 function App() {
   return (
@@ -11,11 +8,10 @@ function App() {
       <nav>
         <Link to="/">Home</Link> <Link to="blog">Blog</Link>
       </nav>
-      <Main>
-        <Router>
-          <Home path="/" />
-        </Router>
-      </Main>
+      <Router>
+        <Home path="/" />
+        <Home path="/blog" />
+      </Router>
       <footer>
         &copy; Zbigniew Żołnierowicz {new Date().getFullYear()}
       </footer>

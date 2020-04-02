@@ -1,6 +1,6 @@
 export const theme = {
     colors: {
-        primary: "hotpink"
+        primary: "hsl(43, 100%, 62%)"
     }
 }
 

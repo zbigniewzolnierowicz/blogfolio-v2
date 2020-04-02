@@ -1,21 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Montserrat:wght@400;500&display=swap");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body, html {
-    margin: 0;
+body,
+html {
+  margin: 0;
 }
 
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Montserrat", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: "EB Garamond", sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "EB Garamond", sans-serif;
 }
 
 #app {
-    width: 100%;
+  width: 100%;
 }

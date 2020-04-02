@@ -1,9 +1,9 @@
-import React from 'react';
-import { Router, Link } from "@reach/router"
-import { ThemeProvider } from "emotion-theming"
+import React from "react";
+import { Router, Link } from "@reach/router";
+import { ThemeProvider } from "emotion-theming";
 
-import { Home } from './routes/Home';
-import { theme } from './helpers/EmotionTheme';
+import { Home } from "./routes/Home";
+import { theme } from "./helpers/EmotionTheme";
 
 function App() {
   return (
@@ -13,11 +13,9 @@ function App() {
           <Link to="/">Home</Link> <Link to="blog">Blog</Link>
         </nav>
         <Router>
-          <Home path="/" default/>
+          <Home path="/" default />
         </Router>
-        <footer>
-          &copy; Zbigniew Żołnierowicz {new Date().getFullYear()}
-        </footer>
+        <footer>&copy; Zbigniew Żołnierowicz {new Date().getFullYear()}</footer>
       </ThemeProvider>
     </>
   );

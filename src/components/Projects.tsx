@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 import { Emphasize } from "./Emphasize"
+import { themeInterface } from "../helpers/EmotionTheme";
 
 const distance = (from: { x: number, y: number }, to: { x: number, y: number }) => Math.abs(Math.sqrt(Math.pow((to.x - from.x), 2) + Math.pow((to.y - from.y), 2)))
 
@@ -35,23 +36,24 @@ interface ProjectInterface {
   emoji?: {
     actual: string,
     label: string
-  }
+  },
 }
+
+const ProjectWrapper = motion.custom(styled.div<{ theme: themeInterface; }>`
+  margin: 1em;
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
+  z-index: 9;
+  display: grid;
+  grid-template-rows: auto 2fr auto;
+  grid-template-columns: 3fr 1fr;
+  background: ${props => props.theme.colors.backgroundAlt};
+`)
 
 export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
   const ref = useRef<any>(null)
   return (
-    <motion.div
-      css={css`
-        margin: 1em;
-        grid-row: 1 / -1;
-        grid-column: 1 / -1;
-        z-index: 9;
-        display: grid;
-        grid-template-rows: auto 2fr auto;
-        grid-template-columns: 3fr 1fr;
-        background: #fafafa;
-      `}
+    <ProjectWrapper
       whileTap={{ scale: 0.9 }}
       variants={ProjectVariants}
       initial="enter"
@@ -100,7 +102,7 @@ export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
           {props.emoji?.actual && <span role="img" aria-label={props.emoji.label}>{props.emoji.actual}</span>}
         </div>
       }
-    </motion.div>
+    </ProjectWrapper>
   );
 };
 

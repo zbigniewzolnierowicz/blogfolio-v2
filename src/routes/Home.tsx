@@ -5,14 +5,15 @@ import { RouteComponentProps } from "@reach/router";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVuejs, faReact } from "@fortawesome/free-brands-svg-icons";
+import { faVuejs, faReact, faAngular, faSass, faHtml5, faCss3Alt } from "@fortawesome/free-brands-svg-icons";
 
 import { Emphasize } from "../components/Emphasize";
 import { Typescript } from "../components/icons/Typescript";
 import { Firebase } from "../components/icons/Firebase";
 import { Project, Projects } from "../components/Projects";
-import Rocketboost from "../assets/rocketboost.png"
-import MrDecal from "../assets/mrdecal.png"
+import Rocketboost from "../assets/rocketboost.png";
+import MrDecal from "../assets/mrdecal.png";
+import { themeInterface } from "../helpers/EmotionTheme";
 
 const Head = motion.custom(styled.div`
   text-align: center;
@@ -23,13 +24,16 @@ const Head = motion.custom(styled.div`
   h2 {
     margin: 0.5em 0;
   }
+  margin: 0 3ch;
 `);
 
-const Main = styled.main`
+const Main = styled.main<{ theme: themeInterface; }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
 `;
 
 const Section = styled.section`
@@ -87,6 +91,16 @@ export const Home = (_props: RouteComponentProps) => {
     }
   ]);
 
+  const Paragraph = styled.p`
+    max-width: 50%;
+    line-height: 1.6em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    @media (max-width: 1024px) {
+      max-width: 100%;
+    }
+  `
+
   return (
     <Main>
       <Head
@@ -110,8 +124,7 @@ export const Home = (_props: RouteComponentProps) => {
       </Head>
       <Section css={css`
         p {
-          margin-block-start: .5em;
-          margin-block-end: .5em;
+          
         }
       `}>
         <Emphasize
@@ -122,17 +135,19 @@ export const Home = (_props: RouteComponentProps) => {
         >
           What do I do?
         </Emphasize>
-        <p>
+        <Paragraph>
           I'm a <Emphasize>front-end developer</Emphasize> specializing in
           JavaScript single-page applications written in <Typescript />{" "}
           <Emphasize>Typescript</Emphasize>,{" "}
           <FontAwesomeIcon icon={faVuejs} color="#42b883" />{" "}
           <Emphasize>Vue.js</Emphasize>,{" "}
           <FontAwesomeIcon icon={faReact} color="#00d8ff" />{" "}
-          <Emphasize>React</Emphasize> and JAMstack development using
+          <Emphasize>React</Emphasize>, <FontAwesomeIcon icon={faAngular} color={"#DD0031"} /> Angular, and JAMstack development using
           state-of-the-art serverless solutions, like <Firebase />{" "}
-          <Emphasize>Google Firebase</Emphasize>.
-        </p>
+          <Emphasize>Google Firebase</Emphasize> or <Emphasize>Netlify</Emphasize>. For styling, I mainly use <FontAwesomeIcon icon={faSass} color={"#CD6799"} /> <Emphasize>Sass</Emphasize> or <Emphasize>Emotion</Emphasize>, if I'm working with React components. For API prototyping, I also know <Emphasize>Express.js</Emphasize>. In terms of other miscellaneous libraries - I know and like working with the <Emphasize>ReactiveX</Emphasize> pattern and with its implementations - be it <Emphasize>RxJS</Emphasize>, RxFire or Angular Services; as well as <Emphasize>Framer</Emphasize> and other animation libraries, like <Emphasize>GreenSock</Emphasize>.
+        </Paragraph>
+        <Paragraph>...</Paragraph>
+        <Paragraph>I also know <FontAwesomeIcon icon={faHtml5} color={"#e34c26"}/> <Emphasize>HTML5</Emphasize>, <FontAwesomeIcon icon={faCss3Alt}  color={"#2965f1"}/> <Emphasize>CSS3</Emphasize> and <Emphasize>JQuery</Emphasize>, I guess.</Paragraph>
       </Section>
       <Emphasize
         as="h3"
@@ -188,6 +203,23 @@ export const Home = (_props: RouteComponentProps) => {
             .filter((_, i: number) => i !== selected)}
         </AnimatePresence>
       </Projects>
+      <Section css={css`
+        p {
+          margin-block-start: .5em;
+          margin-block-end: .5em;
+        }
+      `}>
+        <Emphasize
+          as="h3"
+          css={css`
+            font-size: 1.4em;
+          `}
+        >
+          How did I become a developer?
+        </Emphasize>
+        <Paragraph>I first started by learning the usual - HTML, CSS and some basics of JavaScript. That was around the time when I was in middle school, with the help of my school teachers. Once I hit high school, I picked up C++ (then dropped it) and Python, dabbled with Go, but then I found my calling: I wanted to be a web developer.</Paragraph>
+        <Paragraph>So I marathoned a ton of Udemy courses, read documentation, watched people like Jeff Delaney's Fireship, conferences (especially this one by my programming hero - Jake Archibald), and thought: "Yeah, I like this."</Paragraph>
+      </Section>
     </Main>
   );
 };

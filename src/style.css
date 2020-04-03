@@ -22,6 +22,7 @@ h5 {
   font-family: "EB Garamond", sans-serif;
 }
 
-#app {
+#root {
   width: 100%;
+  min-height: 100vh;
 }

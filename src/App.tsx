@@ -3,19 +3,30 @@ import { Router, Link } from "@reach/router";
 import { ThemeProvider } from "emotion-theming";
 
 import { Home } from "./routes/Home";
-import { theme } from "./helpers/EmotionTheme";
+import { theme, themeInterface } from "./helpers/EmotionTheme";
+import styled from "@emotion/styled";
+
+const Nav = styled.nav<{ theme: themeInterface; }>`
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
+`
+
+const Footer = styled.footer<{ theme: themeInterface; }>`
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
+`
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <nav>
+        <Nav>
           <Link to="/">Home</Link> <Link to="blog">Blog</Link>
-        </nav>
+        </Nav>
         <Router>
           <Home path="/" default />
         </Router>
-        <footer>&copy; Zbigniew Żołnierowicz {new Date().getFullYear()}</footer>
+        <Footer>&copy; Zbigniew Żołnierowicz {new Date().getFullYear()}. Libraries and frameworks used: React, Emotion, FontAwesome, Reach Router, Prettier, Typescript.</Footer>
       </ThemeProvider>
     </>
   );

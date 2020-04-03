@@ -31,21 +31,14 @@ interface ProjectInterface {
   description: string;
   onClick: () => void;
   mode: boolean;
-  imageSrc: string;
+  imageSrc?: string;
   emoji?: {
     actual: string,
     label: string
   }
 }
 
-export const Project: React.FunctionComponent<ProjectInterface> = ({
-  title,
-  description,
-  onClick,
-  mode,
-  imageSrc,
-  emoji
-}) => {
+export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
   const ref = useRef<any>(null)
   return (
     <motion.div
@@ -62,17 +55,17 @@ export const Project: React.FunctionComponent<ProjectInterface> = ({
       whileTap={{ scale: 0.9 }}
       variants={ProjectVariants}
       initial="enter"
-      animate={mode ? "show" : "minimal"}
-      onTap={onClick}
+      animate={props.mode ? "show" : "minimal"}
+      onTap={props.onClick}
       exit={{ scale: 0 }}
       ref={ref}
       custom={distance({ x: 0, y: 0 }, { x: ref?.current?.offsetLeft || 0, y: ref?.current?.offsetTop || 0 })}
     >
-      {mode ? (
+      {props.mode ? (
           <Fragment>
-            <h4 css={css`grid-column: 1 / -1; grid-row: "1"; font-size: 1.4em; margin: 0.4em 1ch;`}>{title}</h4>
-            <p css={css`grid-column: 1; grid-row: 2; margin: 0.4em 1ch;`}>{description}</p>
-            <img
+            <h4 css={css`grid-column: 1 / -1; grid-row: "1"; font-size: 1.4em; margin: 0.4em 1ch;`}>{props.title}</h4>
+            <p css={css`grid-column: 1; grid-row: 2; margin: 0.4em 1ch;`}>{props.description}</p>
+            {props.imageSrc && <img
               css={css`
                 grid-row: 2;
                 grid-column: auto;
@@ -83,9 +76,9 @@ export const Project: React.FunctionComponent<ProjectInterface> = ({
                 justify-self: center;
                 padding: 0.4em 1ch;
               `}
-              src={imageSrc}
-              alt={title}
-            />
+              src={props.imageSrc}
+              alt={props.title}
+            />}
             <div css={css`height: 100%; width: 100%; background: red; grid-row: -1; grid-column: 1 / -1;`}>TODO: Add social media buttons</div>
           </Fragment>
         ) :
@@ -102,8 +95,8 @@ export const Project: React.FunctionComponent<ProjectInterface> = ({
             font-size: 1.4em;
           `}
         >
-          <Emphasize as="h4">{title}</Emphasize>
-          {emoji?.actual && <span role="img" aria-label={emoji.label}>{emoji.actual}</span>}
+          <Emphasize as="h4">{props.title}</Emphasize>
+          {props.emoji?.actual && <span role="img" aria-label={props.emoji.label}>{props.emoji.actual}</span>}
         </div>
       }
     </motion.div>

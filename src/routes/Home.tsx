@@ -48,7 +48,7 @@ const Section = styled.section`
 interface ProjectsInterface {
   title: string;
   description: string;
-  image: string;
+  imageSrc?: string;
   emoji?: {
     actual: string,
     label: string
@@ -61,7 +61,7 @@ export const Home = (_props: RouteComponentProps) => {
     {
       title: "RocketBoost calculators",
       description: "CSGO calculators",
-      image: Rocketboost,
+      imageSrc: Rocketboost,
       emoji: {
         actual: "🚀",
         label: "rocket"
@@ -70,12 +70,20 @@ export const Home = (_props: RouteComponentProps) => {
     {
       title: "Mr. Decal",
       description: "A front for a decal shop.",
-      image: MrDecal,
+      imageSrc: MrDecal,
       emoji: {
         actual: "✈️",
         label: "plane"
       }
     },
+    {
+      title: "Washr",
+      description: "Social platform",
+      emoji: {
+        actual: "👕",
+        label: "shirt"
+      }
+    }
   ]);
 
   return (
@@ -149,11 +157,11 @@ export const Home = (_props: RouteComponentProps) => {
                 description={el.description}
                 key={i}
                 mode={i === selected}
-                imageSrc={el.image}
+                imageSrc={el.imageSrc}
                 onClick={() => setSelected(undefined)}
               />
             ))
-            .filter((_, i) => i === selected)}
+            .filter((_, i: number) => i === selected)}
         </AnimatePresence>
       </div>
       <Projects>
@@ -166,11 +174,11 @@ export const Home = (_props: RouteComponentProps) => {
                 description={el.description}
                 key={i}
                 mode={i === selected}
-                imageSrc={el.image}
+                imageSrc={el.imageSrc}
                 onClick={() => setSelected(i)}
               />
             ))
-            .filter((_, i) => i !== selected)}
+            .filter((_, i: number) => i !== selected)}
         </AnimatePresence>
       </Projects>
     </Main>

@@ -29,6 +29,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 `;
 
 const Section = styled.section`
@@ -107,7 +108,12 @@ export const Home = (_props: RouteComponentProps) => {
           </span>
         </h2>
       </Head>
-      <Section>
+      <Section css={css`
+        p {
+          margin-block-start: .5em;
+          margin-block-end: .5em;
+        }
+      `}>
         <Emphasize
           as="h3"
           css={css`
@@ -136,19 +142,20 @@ export const Home = (_props: RouteComponentProps) => {
       >
         What did I work on?
       </Emphasize>
-      <div
-        css={css`
-          display: grid;
-          grid-template-rows: auto;
-          grid-template-columns: auto;
-          height: fit-content;
-          > * {
-            grid-row: 1 / 1;
-            grid-column: 1 / 1;
-          }
-        `}
-      >
-        <AnimatePresence>
+      <AnimatePresence>
+        <div
+          css={css`
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: auto;
+            height: fit-content;
+            transition: height 100ms ease;
+            > * {
+              grid-row: 1 / 1;
+              grid-column: 1 / 1;
+            }
+          `}
+        >
           {objects
             .map((el, i) => (
               <Project
@@ -162,8 +169,8 @@ export const Home = (_props: RouteComponentProps) => {
               />
             ))
             .filter((_, i: number) => i === selected)}
-        </AnimatePresence>
-      </div>
+        </div>
+      </AnimatePresence>
       <Projects>
         <AnimatePresence>
           {objects

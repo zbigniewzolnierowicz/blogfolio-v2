@@ -60,6 +60,7 @@ export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
       exit={{ scale: 0 }}
       ref={ref}
       custom={distance({ x: 0, y: 0 }, { x: ref?.current?.offsetLeft || 0, y: ref?.current?.offsetTop || 0 })}
+      positionTransition
     >
       {props.mode ? (
           <Fragment>

@@ -5,7 +5,14 @@ import { RouteComponentProps } from "@reach/router";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVuejs, faReact, faAngular, faSass, faHtml5, faCss3Alt } from "@fortawesome/free-brands-svg-icons";
+import {
+  faVuejs,
+  faReact,
+  faAngular,
+  faSass,
+  faHtml5,
+  faCss3Alt,
+} from "@fortawesome/free-brands-svg-icons";
 
 import { Emphasize } from "../components/Emphasize";
 import { Typescript } from "../components/icons/Typescript";
@@ -27,13 +34,13 @@ const Head = motion.custom(styled.div`
   margin: 0 3ch;
 `);
 
-const Main = styled.main<{ theme: themeInterface; }>`
+const Main = styled.main<{ theme: themeInterface }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
 `;
 
 const Section = styled.section`
@@ -55,9 +62,9 @@ interface ProjectsInterface {
   description: string;
   imageSrc?: string;
   emoji?: {
-    actual: string,
-    label: string
-  }
+    actual: string;
+    label: string;
+  };
 }
 
 export const Home = (_props: RouteComponentProps) => {
@@ -69,8 +76,8 @@ export const Home = (_props: RouteComponentProps) => {
       imageSrc: Rocketboost,
       emoji: {
         actual: "🚀",
-        label: "rocket"
-      }
+        label: "rocket",
+      },
     },
     {
       title: "Mr. Decal",
@@ -78,17 +85,17 @@ export const Home = (_props: RouteComponentProps) => {
       imageSrc: MrDecal,
       emoji: {
         actual: "✈️",
-        label: "plane"
-      }
+        label: "plane",
+      },
     },
     {
       title: "Washr",
       description: "Social platform",
       emoji: {
         actual: "👕",
-        label: "shirt"
-      }
-    }
+        label: "shirt",
+      },
+    },
   ]);
 
   const Paragraph = styled.p`
@@ -99,7 +106,7 @@ export const Home = (_props: RouteComponentProps) => {
     @media (max-width: 1024px) {
       max-width: 100%;
     }
-  `
+  `;
 
   return (
     <Main>
@@ -122,11 +129,12 @@ export const Home = (_props: RouteComponentProps) => {
           </span>
         </h2>
       </Head>
-      <Section css={css`
-        p {
-          
-        }
-      `}>
+      <Section
+        css={css`
+          p {
+          }
+        `}
+      >
         <Emphasize
           as="h3"
           css={css`
@@ -142,12 +150,29 @@ export const Home = (_props: RouteComponentProps) => {
           <FontAwesomeIcon icon={faVuejs} color="#42b883" />{" "}
           <Emphasize>Vue.js</Emphasize>,{" "}
           <FontAwesomeIcon icon={faReact} color="#00d8ff" />{" "}
-          <Emphasize>React</Emphasize>, <FontAwesomeIcon icon={faAngular} color={"#DD0031"} /> Angular, and JAMstack development using
-          state-of-the-art serverless solutions, like <Firebase />{" "}
-          <Emphasize>Google Firebase</Emphasize> or <Emphasize>Netlify</Emphasize>. For styling, I mainly use <FontAwesomeIcon icon={faSass} color={"#CD6799"} /> <Emphasize>Sass</Emphasize> or <Emphasize>Emotion</Emphasize>, if I'm working with React components. For API prototyping, I also know <Emphasize>Express.js</Emphasize>. In terms of other miscellaneous libraries - I know and like working with the <Emphasize>ReactiveX</Emphasize> pattern and with its implementations - be it <Emphasize>RxJS</Emphasize>, RxFire or Angular Services; as well as <Emphasize>Framer</Emphasize> and other animation libraries, like <Emphasize>GreenSock</Emphasize>.
+          <Emphasize>React</Emphasize>,{" "}
+          <FontAwesomeIcon icon={faAngular} color={"#DD0031"} /> Angular, and
+          JAMstack development using state-of-the-art serverless solutions, like{" "}
+          <Firebase /> <Emphasize>Google Firebase</Emphasize> or{" "}
+          <Emphasize>Netlify</Emphasize>. For styling, I mainly use{" "}
+          <FontAwesomeIcon icon={faSass} color={"#CD6799"} />{" "}
+          <Emphasize>Sass</Emphasize> or <Emphasize>Emotion</Emphasize>, if I'm
+          working with React components. For API prototyping, I also know{" "}
+          <Emphasize>Express.js</Emphasize>. In terms of other miscellaneous
+          libraries - I know and like working with the{" "}
+          <Emphasize>ReactiveX</Emphasize> pattern and with its implementations
+          - be it <Emphasize>RxJS</Emphasize>, RxFire or Angular Services; as
+          well as <Emphasize>Framer</Emphasize> and other animation libraries,
+          like <Emphasize>GreenSock</Emphasize>.
         </Paragraph>
         <Paragraph>...</Paragraph>
-        <Paragraph>I also know <FontAwesomeIcon icon={faHtml5} color={"#e34c26"}/> <Emphasize>HTML5</Emphasize>, <FontAwesomeIcon icon={faCss3Alt}  color={"#2965f1"}/> <Emphasize>CSS3</Emphasize> and <Emphasize>JQuery</Emphasize>, I guess.</Paragraph>
+        <Paragraph>
+          I also know <FontAwesomeIcon icon={faHtml5} color={"#e34c26"} />{" "}
+          <Emphasize>HTML5</Emphasize>,{" "}
+          <FontAwesomeIcon icon={faCss3Alt} color={"#2965f1"} />{" "}
+          <Emphasize>CSS3</Emphasize> and <Emphasize>JQuery</Emphasize>, I
+          guess.
+        </Paragraph>
       </Section>
       <Emphasize
         as="h3"
@@ -205,12 +230,14 @@ export const Home = (_props: RouteComponentProps) => {
             .filter((_, i: number) => i !== selected)}
         </AnimatePresence>
       </Projects>
-      <Section css={css`
-        p {
-          margin-block-start: .5em;
-          margin-block-end: .5em;
-        }
-      `}>
+      <Section
+        css={css`
+          p {
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+          }
+        `}
+      >
         <Emphasize
           as="h3"
           css={css`
@@ -219,8 +246,19 @@ export const Home = (_props: RouteComponentProps) => {
         >
           How did I become a developer?
         </Emphasize>
-        <Paragraph>I first started by learning the usual - HTML, CSS and some basics of JavaScript. That was around the time when I was in middle school, with the help of my school teachers. Once I hit high school, I picked up C++ (then dropped it) and Python, dabbled with Go, but then I found my calling: I wanted to be a web developer.</Paragraph>
-        <Paragraph>So I marathoned a ton of Udemy courses, read documentation, watched people like Jeff Delaney's Fireship, conferences (especially this one by my programming hero - Jake Archibald), and thought: "Yeah, I like this."</Paragraph>
+        <Paragraph>
+          I first started by learning the usual - HTML, CSS and some basics of
+          JavaScript. That was around the time when I was in middle school, with
+          the help of my school teachers. Once I hit high school, I picked up
+          C++ (then dropped it) and Python, dabbled with Go, but then I found my
+          calling: I wanted to be a web developer.
+        </Paragraph>
+        <Paragraph>
+          So I marathoned a ton of Udemy courses, read documentation, watched
+          people like Jeff Delaney's Fireship, conferences (especially this one
+          by my programming hero - Jake Archibald), and thought: "Yeah, I like
+          this."
+        </Paragraph>
       </Section>
     </Main>
   );

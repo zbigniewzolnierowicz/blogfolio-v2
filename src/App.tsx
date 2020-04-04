@@ -6,15 +6,15 @@ import { Home } from "./routes/Home";
 import { theme, themeInterface } from "./helpers/EmotionTheme";
 import styled from "@emotion/styled";
 
-const Nav = styled.nav<{ theme: themeInterface; }>`
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
-`
+const Nav = styled.nav<{ theme: themeInterface }>`
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
+`;
 
-const Footer = styled.footer<{ theme: themeInterface; }>`
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
-`
+const Footer = styled.footer<{ theme: themeInterface }>`
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
+`;
 
 function App() {
   return (
@@ -26,7 +26,11 @@ function App() {
         <Router>
           <Home path="/" default />
         </Router>
-        <Footer>&copy; Zbigniew Żołnierowicz {new Date().getFullYear()}. Libraries and frameworks used: React, Emotion, FontAwesome, Reach Router, Prettier, Typescript.</Footer>
+        <Footer>
+          &copy; Zbigniew Żołnierowicz {new Date().getFullYear()}. Libraries and
+          frameworks used: React, Emotion, FontAwesome, Reach Router, Prettier,
+          Typescript.
+        </Footer>
       </ThemeProvider>
     </>
   );

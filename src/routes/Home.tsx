@@ -12,6 +12,7 @@ import {
   faSass,
   faHtml5,
   faCss3Alt,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
@@ -85,6 +86,18 @@ export const Home = (_props: RouteComponentProps) => {
         actual: "✈️",
         label: "plane",
       },
+      links: [
+        {
+          name: "Website",
+          link: "https://mrdecal.zolnierowi.cz",
+          icon: faGlobe
+        },
+        {
+          name: "Github",
+          link: "https://github.com/zbigniewzolnierowicz/mrdecal",
+          icon: faGithub
+        }
+      ]
     },
     {
       title: "Washr",
@@ -93,6 +106,18 @@ export const Home = (_props: RouteComponentProps) => {
         actual: "👕",
         label: "shirt",
       },
+      links: [
+        {
+          name: "Website",
+          link: "https://washrsocial.web.app",
+          icon: faGlobe
+        },
+        {
+          name: "Github",
+          link: "https://github.com/zbigniewzolnierowicz/washr",
+          icon: faGithub
+        }
+      ]
     },
   ]);
 

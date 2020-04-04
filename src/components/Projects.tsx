@@ -67,6 +67,9 @@ const ProjectWrapper = motion.custom(styled.div<{
   width: ${(props) => (props.mode ? "80%" : "20%")};
   height: ${(props) => (props.mode ? "45vh" : "20vh")};
   background: ${(props) => props.theme.colors.backgroundAlt.color};
+  @media (max-width: 1024px) {
+    width: ${(props) => (props.mode ? "80%" : "80%")};
+  }
 `);
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -105,16 +108,18 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (props)
     >
       {props.mode ? (
         <Fragment>
-          <h4
+          <Emphasize as ="h4"
             css={css`
-              grid-column: 1 / -1;
-              grid-row: 1 / 2;
+              align-self: center;
+              grid-column: 1 / span 2;
+              grid-row: 1 / span 2;
               font-size: 1.4em;
-              margin: 0.4em 1ch;
+              margin: 0;
+              margin-left: 1em;
             `}
           >
             {props.title}
-          </h4>
+          </Emphasize>
           <p
             css={css`
               grid-column: 1;
@@ -151,6 +156,9 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (props)
           )}
           <div
             css={css`
+              display: flex;
+              flex-direction: row;
+              align-items: center;
               height: 100%;
               width: 100%;
               grid-row: -1;

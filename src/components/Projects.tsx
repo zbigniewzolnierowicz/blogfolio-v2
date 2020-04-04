@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import { Modal, makeStyles, Theme, createStyles } from "@material-ui/core";
 
 import { Emphasize } from "./Emphasize"
 import { themeInterface } from "../helpers/EmotionTheme";
@@ -14,16 +15,12 @@ const ProjectVariants = {
     scale: 0,
   },
   minimal: (distance: number) => ({
-    delay: distance / 1000,
+    delay: distance / 100,
     scale: 1,
-    width: "20vw",
-    height: "20vh",
   }),
   show: (distance: number) => ({
-    delay: distance / 1000,
+    delay: distance / 100,
     scale: 1,
-    width: "90vw",
-    height: "40vh",
   }),
 };
 
@@ -39,28 +36,47 @@ interface ProjectInterface {
   },
 }
 
-const ProjectWrapper = motion.custom(styled.div<{ theme: themeInterface; }>`
+const ProjectWrapper = motion.custom(styled.div<{ mode: boolean; theme: themeInterface; }>`
   margin: 1em;
   grid-row: 1 / -1;
   grid-column: 1 / -1;
   z-index: 9;
   display: grid;
   grid-template-rows: auto 2fr auto;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 5fr 4fr;
+  width: ${props => props.mode ? "80%" : "20%"};
+  height: ${props => props.mode ? "45vh" : "20vh"};
   background: ${props => props.theme.colors.backgroundAlt};
 `)
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      "& img": {
+        maxWidth: '80%',
+        maxHeight: '80%'
+      }
+    }
+  }),
+);
+
 export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
-  const ref = useRef<any>(null)
+  const ref = useRef<any>(null);
+  const [showFullImg, setShowFullImg] = useState(false);
+  const classes = useStyles();
   return (
     <ProjectWrapper
-      whileTap={{ scale: 0.9 }}
+      whileTap={{ scale: 0.95 }}
       variants={ProjectVariants}
       initial="enter"
       animate={props.mode ? "show" : "minimal"}
-      onTap={props.onClick}
+      onTap={() => !props.mode && props.onClick()}
       exit={{ scale: 0 }}
       ref={ref}
+      mode={props.mode}
       custom={distance({ x: 0, y: 0 }, { x: ref?.current?.offsetLeft || 0, y: ref?.current?.offsetTop || 0 })}
       positionTransition
     >
@@ -72,17 +88,19 @@ export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
               css={css`
                 grid-row: 2;
                 grid-column: auto;
-                max-height: 20vmin;
+                height: 100%;
                 width: 100%;
-                object-fit: contain;
+                object-fit: cover;
                 align-self: center;
                 justify-self: center;
-                padding: 0.4em 1ch;
+                cursor: pointer;
               `}
               src={props.imageSrc}
               alt={props.title}
+              onClick={() => setShowFullImg(true)}
             />}
             <div css={css`height: 100%; width: 100%; background: red; grid-row: -1; grid-column: 1 / -1;`}>TODO: Add social media buttons</div>
+            <button onClick={props.onClick}>X</button>
           </Fragment>
         ) :
         <div
@@ -102,6 +120,7 @@ export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
           {props.emoji?.actual && <span role="img" aria-label={props.emoji.label}>{props.emoji.actual}</span>}
         </div>
       }
+      <Modal className={classes.modal} open={showFullImg} onClose={() => setShowFullImg(false)}><img src={props.imageSrc} alt={props.title}/></Modal>
     </ProjectWrapper>
   );
 };

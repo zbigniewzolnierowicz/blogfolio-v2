@@ -164,7 +164,9 @@ export const Home = (_props: RouteComponentProps) => {
             grid-template-rows: auto;
             grid-template-columns: auto;
             height: fit-content;
+            justify-items: center;
             transition: height 100ms ease;
+            min-width: 60vw;
             > * {
               grid-row: 1 / 1;
               grid-column: 1 / 1;

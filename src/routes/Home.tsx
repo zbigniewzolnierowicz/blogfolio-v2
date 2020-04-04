@@ -13,11 +13,12 @@ import {
   faHtml5,
   faCss3Alt,
 } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 import { Emphasize } from "../components/Emphasize";
 import { Typescript } from "../components/icons/Typescript";
 import { Firebase } from "../components/icons/Firebase";
-import { Project, Projects } from "../components/Projects";
+import { Project, Projects, ProjectsInterface } from "../components/Projects";
 import Rocketboost from "../assets/rocketboost.png";
 import MrDecal from "../assets/mrdecal.png";
 import { themeInterface } from "../helpers/EmotionTheme";
@@ -39,7 +40,7 @@ const Main = styled.main<{ theme: themeInterface }>`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
 `;
 
@@ -57,16 +58,6 @@ const Section = styled.section`
   }
 `;
 
-interface ProjectsInterface {
-  title: string;
-  description: string;
-  imageSrc?: string;
-  emoji?: {
-    actual: string;
-    label: string;
-  };
-}
-
 export const Home = (_props: RouteComponentProps) => {
   const [selected, setSelected] = useState<undefined | number>(0);
   const [objects] = useState<ProjectsInterface[]>([
@@ -78,6 +69,13 @@ export const Home = (_props: RouteComponentProps) => {
         actual: "🚀",
         label: "rocket",
       },
+      links: [
+        {
+          name: "Website",
+          link: "https://rocketboost.pro",
+          icon: faGlobe
+        }
+      ]
     },
     {
       title: "Mr. Decal",
@@ -201,12 +199,9 @@ export const Home = (_props: RouteComponentProps) => {
           {objects
             .map((el, i) => (
               <Project
-                title={el.title}
-                emoji={el.emoji}
-                description={el.description}
+                {...el}
                 key={i}
                 mode={i === selected}
-                imageSrc={el.imageSrc}
                 onClick={() => setSelected(undefined)}
               />
             ))
@@ -218,12 +213,9 @@ export const Home = (_props: RouteComponentProps) => {
           {objects
             .map((el, i) => (
               <Project
-                title={el.title}
-                emoji={el.emoji}
-                description={el.description}
+                {...el}
                 key={i}
                 mode={i === selected}
-                imageSrc={el.imageSrc}
                 onClick={() => setSelected(i)}
               />
             ))

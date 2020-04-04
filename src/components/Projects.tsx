@@ -8,6 +8,10 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 import { Emphasize } from "./Emphasize";
 import { themeInterface } from "../helpers/EmotionTheme";
+import { Button } from "./Button";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const distance = (
   from: { x: number; y: number },
@@ -29,16 +33,24 @@ const ProjectVariants = {
   }),
 };
 
-interface ProjectInterface {
+export interface ProjectsInterface {
   title: string;
   description: string;
-  onClick: () => void;
-  mode: boolean;
   imageSrc?: string;
   emoji?: {
     actual: string;
     label: string;
   };
+  links?: {
+    icon?: IconProp;
+    name: string;
+    link: string;
+  }[]
+}
+
+export interface ProjectElementInterface extends ProjectsInterface {
+  onClick: () => void;
+  mode: boolean;
 }
 
 const ProjectWrapper = motion.custom(styled.div<{
@@ -50,11 +62,11 @@ const ProjectWrapper = motion.custom(styled.div<{
   grid-column: 1 / -1;
   z-index: 9;
   display: grid;
-  grid-template-rows: 3em 1fr 3fr 4fr auto;
-  grid-template-columns: 5fr 4fr 3em;
+  grid-template-rows: 1fr 1fr 3fr 4fr auto;
+  grid-template-columns: 5fr 4fr 1fr;
   width: ${(props) => (props.mode ? "80%" : "20%")};
   height: ${(props) => (props.mode ? "45vh" : "20vh")};
-  background: ${(props) => props.theme.colors.backgroundAlt};
+  background: ${(props) => props.theme.colors.backgroundAlt.color};
 `);
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -71,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
+export const Project: React.FunctionComponent<ProjectElementInterface> = (props) => {
   const ref = useRef<any>(null);
   const [showFullImg, setShowFullImg] = useState(false);
   const classes = useStyles();
@@ -141,22 +153,25 @@ export const Project: React.FunctionComponent<ProjectInterface> = (props) => {
             css={css`
               height: 100%;
               width: 100%;
-              background: red;
               grid-row: -1;
               grid-column: 1 / -1;
             `}
           >
-            TODO: Add social media buttons
+            {props.links?.map(link => <Button wrapperProps={{ as: "a", href: link.link }}>{link.icon && <FontAwesomeIcon icon={link.icon}/>} {link.name}</Button>)}
           </div>
-          <button
+          <Button
             onClick={props.onClick}
-            css={css`
+            buttonCss={css`
               grid-row: 1;
               grid-column: 3;
+              margin: 0;
+              margin-top: 1em;
+              margin-right: 1em;
+              justify-self: flex-end;
             `}
           >
-            X
-          </button>
+            <FontAwesomeIcon icon={faTimes} />
+          </Button>
         </Fragment>
       ) : (
         <div

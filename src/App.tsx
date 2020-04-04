@@ -7,12 +7,12 @@ import { theme, themeInterface } from "./helpers/EmotionTheme";
 import styled from "@emotion/styled";
 
 const Nav = styled.nav<{ theme: themeInterface }>`
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
 `;
 
 const Footer = styled.footer<{ theme: themeInterface }>`
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
 `;
 

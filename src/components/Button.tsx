@@ -21,20 +21,20 @@ const ButtonWrapper = motion.custom(styled.button<{ theme: themeInterface }>`
 `);
 
 interface ButtonProps {
-    onClick?: (arg0: MouseEvent | TouchEvent | PointerEvent) => void;
-    buttonCss?: any;
-    wrapperProps?: any;
+  onClick?: (arg0: MouseEvent | TouchEvent | PointerEvent) => void;
+  buttonCss?: any;
+  wrapperProps?: any;
 }
 
 export const Button: FunctionComponent<ButtonProps> = (props) => {
-    return (
-        <ButtonWrapper
-            onTap={(event) => props.onClick && props.onClick(event)}
-            whileTap={{ scale: 0.9 }}
-            css={props.buttonCss}
-            {...props.wrapperProps}
-        >
-            {props.children}
-        </ButtonWrapper>
-    )
-}
+  return (
+    <ButtonWrapper
+      onTap={(event) => props.onClick && props.onClick(event)}
+      whileTap={{ scale: 0.9 }}
+      css={props.buttonCss}
+      {...props.wrapperProps}
+    >
+      {props.children}
+    </ButtonWrapper>
+  );
+};

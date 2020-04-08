@@ -45,7 +45,7 @@ export interface ProjectsInterface {
     icon?: IconProp;
     name: string;
     link: string;
-  }[]
+  }[];
 }
 
 export interface ProjectElementInterface extends ProjectsInterface {
@@ -62,10 +62,11 @@ const ProjectWrapper = motion.custom(styled.div<{
   grid-column: 1 / -1;
   z-index: 9;
   display: grid;
-  grid-template-rows: 1fr 1fr 3fr 4fr auto;
+  grid-template-rows: 1fr 1fr minmax(auto, 2fr) minmax(auto, 200px) auto;
   grid-template-columns: 5fr 4fr 1fr;
+  padding: 1em;
   width: ${(props) => (props.mode ? "80%" : "20%")};
-  height: ${(props) => (props.mode ? "45vh" : "20vh")};
+  min-height: ${(props) => (props.mode ? "50vh" : "30vh")};
   background: ${(props) => props.theme.colors.backgroundAlt.color};
   @media (max-width: 1024px) {
     width: ${(props) => (props.mode ? "80%" : "80%")};
@@ -86,7 +87,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Project: React.FunctionComponent<ProjectElementInterface> = (props) => {
+export const Project: React.FunctionComponent<ProjectElementInterface> = (
+  props
+) => {
   const ref = useRef<any>(null);
   const [showFullImg, setShowFullImg] = useState(false);
   const classes = useStyles();
@@ -105,10 +108,14 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (props)
         { x: ref?.current?.offsetLeft || 0, y: ref?.current?.offsetTop || 0 }
       )}
       positionTransition
+      css={css`
+        grid-template-rows: minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(auto, 2fr) ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;
+      `}
     >
       {props.mode ? (
         <Fragment>
-          <Emphasize as ="h4"
+          <Emphasize
+            as="h4"
             css={css`
               align-self: center;
               grid-column: 1 / span 2;
@@ -122,9 +129,12 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (props)
           </Emphasize>
           <p
             css={css`
-              grid-column: 1;
-              grid-row: 3 / 5;
               margin: 0.4em 1ch;
+              margin-left: 0;
+              grid-column: ${props.imageSrc ? "1" : "1 / -1"};
+              grid-row: 3 / 5;
+              font-size: 1em;
+              text-align: justify;
               @media (max-width: 930px) {
                 grid-column: 1 / -1;
                 grid-row: 3 / 4;
@@ -165,7 +175,11 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (props)
               grid-column: 1 / -1;
             `}
           >
-            {props.links?.map(link => <Button wrapperProps={{ as: "a", href: link.link }}>{link.icon && <FontAwesomeIcon icon={link.icon}/>} {link.name}</Button>)}
+            {props.links?.map((link) => (
+              <Button wrapperProps={{ as: "a", href: link.link }}>
+                {link.icon && <FontAwesomeIcon icon={link.icon} />} {link.name}
+              </Button>
+            ))}
           </div>
           <Button
             onClick={props.onClick}

@@ -59,67 +59,73 @@ const Section = styled.section`
   }
 `;
 
+const objects: ProjectsInterface[] = [
+  {
+    title: "RocketBoost calculators",
+    description:
+      `I coded up a set of calculators for a boosting service for the game Counter Strike: Global Offensive.
+      I utilized React for the actual frontend part of the calculator, Firebase for storage of data and pricing and the PayPal API for payments.`,
+    imageSrc: Rocketboost,
+    emoji: {
+      actual: "🚀",
+      label: "rocket",
+    },
+    links: [
+      {
+        name: "Website",
+        link: "https://rocketboost.pro",
+        icon: faGlobe,
+      },
+    ],
+  },
+  {
+    title: "Mr. Decal",
+    description:
+      `One of my earliest projects. This is the page that lists example prices for various decals.
+      The page was written in Vue, with VueX used for state management, Firebase for data with RxFire and Vue-Rx connecting it to the frontend,
+      Vue-i18n for internationalization and Bulma for the appearance of the components.`,
+    imageSrc: MrDecal,
+    emoji: {
+      actual: "✈️",
+      label: "plane",
+    },
+    links: [
+      {
+        name: "Website",
+        link: "https://mrdecal.zolnierowi.cz",
+        icon: faGlobe,
+      },
+      {
+        name: "Github",
+        link: "https://github.com/zbigniewzolnierowicz/mrdecal",
+        icon: faGithub,
+      },
+    ],
+  },
+  {
+    title: "Washr",
+    description: "My personal project I made when learning Angular. It's a social platform built entirely on Firebase and its tooling, such as Firestore, Firebase Hosting and Firebase Storage. The front-end part of the website was built with Angular and connected to Firebase via angularfire. It also features a barebones Markdown editor, courtesy of Showdown.js.",
+    emoji: {
+      actual: "👕",
+      label: "shirt",
+    },
+    links: [
+      {
+        name: "Website",
+        link: "https://washrsocial.web.app",
+        icon: faGlobe,
+      },
+      {
+        name: "Github",
+        link: "https://github.com/zbigniewzolnierowicz/washr",
+        icon: faGithub,
+      },
+    ],
+  },
+];
+
 export const Home = (_props: RouteComponentProps) => {
   const [selected, setSelected] = useState<undefined | number>(0);
-  const [objects] = useState<ProjectsInterface[]>([
-    {
-      title: "RocketBoost calculators",
-      description: "CSGO calculators",
-      imageSrc: Rocketboost,
-      emoji: {
-        actual: "🚀",
-        label: "rocket",
-      },
-      links: [
-        {
-          name: "Website",
-          link: "https://rocketboost.pro",
-          icon: faGlobe
-        }
-      ]
-    },
-    {
-      title: "Mr. Decal",
-      description: "A front for a decal shop.",
-      imageSrc: MrDecal,
-      emoji: {
-        actual: "✈️",
-        label: "plane",
-      },
-      links: [
-        {
-          name: "Website",
-          link: "https://mrdecal.zolnierowi.cz",
-          icon: faGlobe
-        },
-        {
-          name: "Github",
-          link: "https://github.com/zbigniewzolnierowicz/mrdecal",
-          icon: faGithub
-        }
-      ]
-    },
-    {
-      title: "Washr",
-      description: "Social platform",
-      emoji: {
-        actual: "👕",
-        label: "shirt",
-      },
-      links: [
-        {
-          name: "Website",
-          link: "https://washrsocial.web.app",
-          icon: faGlobe
-        },
-        {
-          name: "Github",
-          link: "https://github.com/zbigniewzolnierowicz/washr",
-          icon: faGithub
-        }
-      ]
-    },
-  ]);
 
   const Paragraph = styled.p`
     max-width: 50%;

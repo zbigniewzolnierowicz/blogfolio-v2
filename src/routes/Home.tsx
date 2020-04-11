@@ -71,13 +71,12 @@ const ProjectShowoff = styled.div`
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-`
+`;
 
 const objects: ProjectsInterface[] = [
   {
     title: "RocketBoost calculators",
-    description:
-      `I coded up a set of calculators for a boosting service for the game Counter Strike: Global Offensive.
+    description: `I coded up a set of calculators for a boosting service for the game Counter Strike: Global Offensive.
       I utilized React for the actual frontend part of the calculator, Firebase for storage of data and pricing and the PayPal API for payments.`,
     imageSrc: Rocketboost,
     emoji: {
@@ -94,8 +93,7 @@ const objects: ProjectsInterface[] = [
   },
   {
     title: "Mr. Decal",
-    description:
-      `One of my earliest projects. This is the page that lists example prices for various decals.
+    description: `One of my earliest projects. This is the page that lists example prices for various decals.
       The page was written in Vue, with VueX used for state management, Firebase for data with RxFire and Vue-Rx connecting it to the frontend,
       Vue-i18n for internationalization and Bulma for the appearance of the components.`,
     imageSrc: MrDecal,
@@ -118,7 +116,8 @@ const objects: ProjectsInterface[] = [
   },
   {
     title: "Washr",
-    description: "My personal project I made when learning Angular. It's a social platform built entirely on Firebase and its tooling, such as Firestore, Firebase Hosting and Firebase Storage. The front-end part of the website was built with Angular and connected to Firebase via angularfire. It also features a barebones Markdown editor, courtesy of Showdown.js.",
+    description:
+      "My personal project I made when learning Angular. It's a social platform built entirely on Firebase and its tooling, such as Firestore, Firebase Hosting and Firebase Storage. The front-end part of the website was built with Angular and connected to Firebase via angularfire. It also features a barebones Markdown editor, courtesy of Showdown.js.",
     emoji: {
       actual: "👕",
       label: "shirt",

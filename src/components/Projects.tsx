@@ -84,11 +84,11 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (
         minimal: {
           scale: 1,
           transition: {
-            delay: props.index * 0.1
+            delay: props.index * 0.1,
           },
         },
         show: {
-          scale: 1
+          scale: 1,
         },
       }}
       initial="enter"
@@ -99,7 +99,10 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (
       mode={props.mode}
       positionTransition
       css={css`
-        grid-template-rows: minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(auto, 2fr) ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;
+        grid-template-rows: minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(
+            auto,
+            2fr
+          ) ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;
       `}
     >
       {props.mode ? (

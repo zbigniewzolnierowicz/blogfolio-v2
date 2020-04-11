@@ -43,14 +43,14 @@ export const theme: { dark: themeInterface; light: themeInterface } = {
     colors: {
       primary: "hsl(43, 100%, 62%)",
       background: {
-        shadowTopLeft: "hsl(43, 0%, 9%)",
-        shadowBottomRight: "hsl(43, 0%, 12%)",
-        color: "hsl(43, 0%, 90%)",
+        shadowTopLeft: "hsl(43, 0%, 85%)",
+        shadowBottomRight: "hsl(43, 0%, 100%)",
+        color: "hsl(43, 0%, 100%)",
       },
       backgroundAlt: {
-        shadowTopLeft: "hsl(0, 0%, 60%)",
-        shadowBottomRight: "hsl(0, 0%, 81%)",
-        color: "hsl(43, 0%, 70%)",
+        shadowTopLeft: "hsl(0, 0%, 77%)",
+        shadowBottomRight: "hsl(43, 0%, 100%)",
+        color: "hsl(43, 0%, 90%)",
       },
       text: "hsl(43, 0%, 0%)",
       textAlt: "hsl(43, 0%, 0%)",

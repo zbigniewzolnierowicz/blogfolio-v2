@@ -14,8 +14,15 @@ const Nav = styled.nav<{ theme: themeInterface }>`
 */
 
 const Footer = styled.footer<{ theme: themeInterface }>`
+  display: block;
   background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
+  width: 100%;
+  padding: 2em 0;
+  text-align: center;
+  a {
+    color: ${(props) => props.theme.colors.text}
+  }
 `;
 
 function App() {
@@ -31,8 +38,7 @@ function App() {
         </Router>
         <Footer>
           &copy; Zbigniew Żołnierowicz {new Date().getFullYear()}. Libraries and
-          frameworks used: React, Emotion, FontAwesome, Reach Router, Prettier,
-          Typescript.
+          frameworks used: <a href="https://reactjs.org/">React</a>, <a href="https://emotion.sh">Emotion</a>, <a href="https://fontawesome.com">FontAwesome</a>, <a href="Reach Router">Reach Router</a>, <a href="https://prettier.io/">Prettier</a>, <a href="https://www.typescriptlang.org/">Typescript</a>.
         </Footer>
       </ThemeProvider>
     </>

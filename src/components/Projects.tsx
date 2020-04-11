@@ -13,26 +13,6 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const distance = (
-  from: { x: number; y: number },
-  to: { x: number; y: number }
-) =>
-  Math.abs(Math.sqrt(Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2)));
-
-const ProjectVariants = {
-  enter: {
-    scale: 0,
-  },
-  minimal: (distance: number) => ({
-    delay: distance / 100,
-    scale: 1,
-  }),
-  show: (distance: number) => ({
-    delay: distance / 100,
-    scale: 1,
-  }),
-};
-
 export interface ProjectsInterface {
   title: string;
   description: string;
@@ -51,6 +31,7 @@ export interface ProjectsInterface {
 export interface ProjectElementInterface extends ProjectsInterface {
   onClick: () => void;
   mode: boolean;
+  index: number;
 }
 
 const ProjectWrapper = motion.custom(styled.div<{
@@ -96,17 +77,26 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (
   return (
     <ProjectWrapper
       whileTap={{ scale: props.mode ? 1 : 0.95 }}
-      variants={ProjectVariants}
+      variants={{
+        enter: {
+          scale: 0,
+        },
+        minimal: {
+          scale: 1,
+          transition: {
+            delay: props.index * 0.1
+          },
+        },
+        show: {
+          scale: 1
+        },
+      }}
       initial="enter"
       animate={props.mode ? "show" : "minimal"}
       onTap={() => !props.mode && props.onClick()}
       exit={{ scale: 0 }}
       ref={ref}
       mode={props.mode}
-      custom={distance(
-        { x: 0, y: 0 },
-        { x: ref?.current?.offsetLeft || 0, y: ref?.current?.offsetTop || 0 }
-      )}
       positionTransition
       css={css`
         grid-template-rows: minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(auto, 2fr) ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;

@@ -59,6 +59,20 @@ const Section = styled.section`
   }
 `;
 
+const ProjectShowoff = styled.div`
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  height: fit-content;
+  justify-items: center;
+  transition: height 100ms ease;
+  min-width: 60vw;
+  > * {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+`
+
 const objects: ProjectsInterface[] = [
   {
     title: "RocketBoost calculators",
@@ -125,7 +139,7 @@ const objects: ProjectsInterface[] = [
 ];
 
 export const Home = (_props: RouteComponentProps) => {
-  const [selected, setSelected] = useState<undefined | number>(0);
+  const [selected, setSelected] = useState<undefined | number>(undefined);
 
   const Paragraph = styled.p`
     max-width: 50%;
@@ -212,32 +226,19 @@ export const Home = (_props: RouteComponentProps) => {
         What did I work on?
       </Emphasize>
       <AnimatePresence>
-        <div
-          css={css`
-            display: grid;
-            grid-template-rows: auto;
-            grid-template-columns: auto;
-            height: fit-content;
-            justify-items: center;
-            transition: height 100ms ease;
-            min-width: 60vw;
-            > * {
-              grid-row: 1 / 1;
-              grid-column: 1 / 1;
-            }
-          `}
-        >
+        <ProjectShowoff>
           {objects
             .map((el, i) => (
               <Project
                 {...el}
                 key={i}
+                index={0}
                 mode={i === selected}
                 onClick={() => setSelected(undefined)}
               />
             ))
             .filter((_, i: number) => i === selected)}
-        </div>
+        </ProjectShowoff>
       </AnimatePresence>
       <Projects>
         <AnimatePresence>
@@ -245,7 +246,7 @@ export const Home = (_props: RouteComponentProps) => {
             .map((el, i) => (
               <Project
                 {...el}
-                key={i}
+                index={i}
                 mode={i === selected}
                 onClick={() => setSelected(i)}
               />

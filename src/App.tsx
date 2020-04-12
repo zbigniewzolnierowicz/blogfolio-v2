@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Router } from "@reach/router";
 import { ThemeProvider } from "emotion-theming";
-
-import { Button } from "./components/Button"
-import { Home } from "./routes/Home";
-import { theme, themeInterface, ThemesEnum } from "./helpers/EmotionTheme";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = styled.nav<{ theme: themeInterface }>`
+import { Button } from "./components/Button";
+import { Home } from "./routes/Home";
+import { theme, themeInterface, ThemesEnum } from "./helpers/EmotionTheme";
+
+/*const Nav = styled.nav<{ theme: themeInterface }>`
   background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
-`;
+`;*/
 
 const Footer = styled.footer<{ theme: themeInterface }>`
   display: block;
@@ -40,9 +40,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme[currentTheme]}>
-        <Nav>
-          {/*<Link to="/">Home</Link> <Link to="blog">Blog</Link>*/}
-        </Nav>
+        {/*<Nav><Link to="/">Home</Link> <Link to="blog">Blog</Link></Nav>*/}
         <Button
           buttonCss={css`
             position: fixed;
@@ -54,6 +52,7 @@ function App() {
             border-width: 1px;
           `}
           buttonType="alt"
+          ariaHidden={true}
           onClick={() =>
             setCurrentTheme(
               currentTheme === ThemesEnum.dark

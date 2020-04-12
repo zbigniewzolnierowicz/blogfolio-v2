@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { themeInterface } from "../helpers/EmotionTheme";
 
 interface EmphasizePropsInterface {

@@ -2,13 +2,23 @@
 import { jsx } from "@emotion/core";
 import { FunctionComponent } from "react";
 import styled from "@emotion/styled";
-import { themeInterface } from "../helpers/EmotionTheme";
 import { motion } from "framer-motion";
 
-const ButtonWrapper = motion.custom(styled.button<{ theme: themeInterface, buttonType: string }>`
+import { themeInterface } from "../helpers/EmotionTheme";
+
+const ButtonWrapper = motion.custom(styled.button<{
+  theme: themeInterface;
+  buttonType: string;
+}>`
   display: block;
-  background: ${(props) => props.buttonType === "alt" ? props.theme.colors.backgroundAlt.color : props.theme.colors.background.color};
-  color: ${(props) => props.buttonType === "alt" ? props.theme.colors.textAlt : props.theme.colors.text};
+  background: ${(props) =>
+    props.buttonType === "alt"
+      ? props.theme.colors.backgroundAlt.color
+      : props.theme.colors.background.color};
+  color: ${(props) =>
+    props.buttonType === "alt"
+      ? props.theme.colors.textAlt
+      : props.theme.colors.text};
   padding: 1em;
   border: none;
   margin: 1em;
@@ -16,8 +26,12 @@ const ButtonWrapper = motion.custom(styled.button<{ theme: themeInterface, butto
   text-decoration: none;
   height: fit-content;
   width: fit-content;
-  box-shadow: -2px -2px 8px ${(props) => props.buttonType === "alt" ? props.theme.colors.backgroundAlt.shadowTopLeft : props.theme.colors.background.shadowTopLeft},
-    2px 2px 8px ${(props) => props.buttonType === "alt" ? props.theme.colors.backgroundAlt.shadowBottomRight: props.theme.colors.background.shadowBottomRight};
+  box-shadow: -2px -2px 8px ${(props) => (props.buttonType === "alt" ? props.theme.colors.backgroundAlt.shadowTopLeft : props.theme.colors.background.shadowTopLeft)},
+    2px 2px 8px
+      ${(props) =>
+        props.buttonType === "alt"
+          ? props.theme.colors.backgroundAlt.shadowBottomRight
+          : props.theme.colors.background.shadowBottomRight};
 `);
 
 interface ButtonProps {
@@ -25,6 +39,7 @@ interface ButtonProps {
   buttonCss?: any;
   wrapperProps?: any;
   buttonType?: "normal" | "alt";
+  ariaHidden?: boolean;
 }
 
 export const Button: FunctionComponent<ButtonProps> = (props) => {
@@ -35,6 +50,7 @@ export const Button: FunctionComponent<ButtonProps> = (props) => {
       css={props.buttonCss}
       {...props.wrapperProps}
       buttonType={props.buttonType || "normal"}
+      aria-hidden={props.ariaHidden || false}
     >
       {props.children}
     </ButtonWrapper>

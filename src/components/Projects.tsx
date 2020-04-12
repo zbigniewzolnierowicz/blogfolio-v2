@@ -99,10 +99,9 @@ export const Project: React.FunctionComponent<ProjectElementInterface> = (
       mode={props.mode}
       positionTransition
       css={css`
-        grid-template-rows: minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(
-            auto,
-            2fr
-          ) ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;
+        grid-template-rows:
+          minmax(auto, 0.5fr) minmax(auto, 0.5fr) minmax(auto, 2fr)
+          ${props.imageSrc ? "minmax(auto, 200px)" : "0px"} auto;
       `}
     >
       {props.mode ? (

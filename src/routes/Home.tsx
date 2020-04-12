@@ -221,7 +221,7 @@ export const Home = (_props: RouteComponentProps) => {
             .map((el, i) => (
               <Project
                 {...el}
-                key={i}
+                key={`${i}_${el.title}`}
                 index={0}
                 mode={i === selected}
                 onClick={() => setSelected(undefined)}
@@ -236,6 +236,7 @@ export const Home = (_props: RouteComponentProps) => {
             .map((el, i) => (
               <Project
                 {...el}
+                key={`${i}_${el.title}`}
                 index={i}
                 mode={i === selected}
                 onClick={() => setSelected(i)}

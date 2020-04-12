@@ -19,10 +19,10 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { Emphasize } from "../components/Emphasize";
 import { Typescript } from "../components/icons/Typescript";
 import { Firebase } from "../components/icons/Firebase";
-import { Project, Projects, ProjectsInterface } from "../components/Projects";
+import { Project, Projects, IProjects } from "../components/Projects";
 import Rocketboost from "../assets/rocketboost.png";
 import MrDecal from "../assets/mrdecal.png";
-import { themeInterface } from "../helpers/EmotionTheme";
+import { ITheme } from "../helpers/EmotionTheme";
 
 const Head = motion.custom(styled.div`
   text-align: center;
@@ -36,7 +36,7 @@ const Head = motion.custom(styled.div`
   margin: 0 3ch;
 `);
 
-const Main = styled.main<{ theme: themeInterface }>`
+const Main = styled.main<{ theme: ITheme }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +73,7 @@ const ProjectShowoff = styled.div`
   }
 `;
 
-const objects: ProjectsInterface[] = [
+const objects: IProjects[] = [
   {
     title: "RocketBoost calculators",
     description: `I coded up a set of calculators for a boosting service for the game Counter Strike: Global Offensive.

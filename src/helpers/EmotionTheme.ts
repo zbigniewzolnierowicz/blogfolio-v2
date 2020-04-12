@@ -1,4 +1,4 @@
-export interface themeInterface {
+export interface ITheme {
   colors: {
     primary: string;
     background: {
@@ -21,7 +21,7 @@ export enum ThemesEnum {
   light = "light",
 }
 
-export const theme: { dark: themeInterface; light: themeInterface } = {
+export const theme: { dark: ITheme; light: ITheme } = {
   [ThemesEnum.dark]: {
     colors: {
       primary: "hsl(43, 100%, 62%)",

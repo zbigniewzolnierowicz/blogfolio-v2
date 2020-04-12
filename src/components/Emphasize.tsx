@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 
-import { themeInterface } from "../helpers/EmotionTheme";
+import { ITheme } from "../helpers/EmotionTheme";
 
-interface EmphasizePropsInterface {
-  theme: themeInterface;
+interface IEmphasizeProps {
+  theme: ITheme;
   as?: string;
 }
 
-export const Emphasize = styled.span<EmphasizePropsInterface>`
+export const Emphasize = styled.span<IEmphasizeProps>`
   font-weight: 500;
   text-decoration: solid underline ${(props) => props.theme.colors.primary};
   h1 > &,

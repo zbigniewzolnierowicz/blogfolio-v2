@@ -4,10 +4,10 @@ import { FunctionComponent } from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
-import { themeInterface } from "../helpers/EmotionTheme";
+import { ITheme } from "../helpers/EmotionTheme";
 
 const ButtonWrapper = motion.custom(styled.button<{
-  theme: themeInterface;
+  theme: ITheme;
   buttonType: string;
 }>`
   display: block;

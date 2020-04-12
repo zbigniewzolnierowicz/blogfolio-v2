@@ -7,13 +7,13 @@ import Modal from "@material-ui/core/Modal";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 import { Emphasize } from "./Emphasize";
-import { themeInterface } from "../helpers/EmotionTheme";
+import { ITheme } from "../helpers/EmotionTheme";
 import { Button } from "./Button";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export interface ProjectsInterface {
+export interface IProjects {
   title: string;
   description: string;
   imageSrc?: string;
@@ -28,7 +28,7 @@ export interface ProjectsInterface {
   }[];
 }
 
-export interface ProjectElementInterface extends ProjectsInterface {
+export interface IProjectElement extends IProjects {
   onClick: () => void;
   mode: boolean;
   index: number;
@@ -36,7 +36,7 @@ export interface ProjectElementInterface extends ProjectsInterface {
 
 const ProjectWrapper = motion.custom(styled.div<{
   mode: boolean;
-  theme: themeInterface;
+  theme: ITheme;
 }>`
   margin: 1em;
   grid-row: 1 / -1;
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Project: React.FunctionComponent<ProjectElementInterface> = (
+export const Project: React.FunctionComponent<IProjectElement> = (
   props
 ) => {
   const ref = useRef<any>(null);

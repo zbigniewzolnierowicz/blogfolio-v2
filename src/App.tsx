@@ -8,14 +8,14 @@ import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
 import { Button } from "./components/Button";
 import { Home } from "./routes/Home";
-import { theme, themeInterface, ThemesEnum } from "./helpers/EmotionTheme";
+import { theme, ITheme, ThemesEnum } from "./helpers/EmotionTheme";
 
-/*const Nav = styled.nav<{ theme: themeInterface }>`
+/*const Nav = styled.nav<{ theme: ITheme }>`
   background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};
 `;*/
 
-const Footer = styled.footer<{ theme: themeInterface }>`
+const Footer = styled.footer<{ theme: ITheme }>`
   display: block;
   background: ${(props) => props.theme.colors.background.color};
   color: ${(props) => props.theme.colors.text};

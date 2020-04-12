@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Router } from "@reach/router";
 import { ThemeProvider } from "emotion-theming";
 
+import { Button } from "./components/Button"
 import { Home } from "./routes/Home";
 import { theme, themeInterface, ThemesEnum } from "./helpers/EmotionTheme";
 import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = styled.nav<{ theme: themeInterface }>`
   background: ${(props) => props.theme.colors.background.color};
@@ -37,20 +41,29 @@ function App() {
     <>
       <ThemeProvider theme={theme[currentTheme]}>
         <Nav>
-          <button
-            type="button"
-            onClick={() =>
-              setCurrentTheme(
-                currentTheme === ThemesEnum.dark
-                  ? ThemesEnum.light
-                  : ThemesEnum.dark
-              )
-            }
-          >
-            Change theme
-          </button>
           {/*<Link to="/">Home</Link> <Link to="blog">Blog</Link>*/}
         </Nav>
+        <Button
+          buttonCss={css`
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 999;
+            border-style: solid;
+            border-color: white;
+            border-width: 1px;
+          `}
+          buttonType="alt"
+          onClick={() =>
+            setCurrentTheme(
+              currentTheme === ThemesEnum.dark
+                ? ThemesEnum.light
+                : ThemesEnum.dark
+            )
+          }
+        >
+          <FontAwesomeIcon icon={faPalette} />
+        </Button>
         <Router>
           <Home path="/" default />
         </Router>

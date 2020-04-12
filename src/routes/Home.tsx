@@ -49,7 +49,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 5ch;
+  margin: 0 2ch;
   h3 {
     margin: 0.5em 0;
   }

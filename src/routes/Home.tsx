@@ -156,13 +156,9 @@ export const Home = (_props: RouteComponentProps) => {
         initial={{ y: 200, rotateX: "-90deg", scale: 0 }}
         animate={{ y: 0, rotateX: 0, scale: 1 }}
       >
-        <h1
-          css={css`
-            font-size: 3em;
-          `}
-        >
-          <Emphasize>Zbigniew Żołnierowicz</Emphasize>
-        </h1>
+        <Emphasize as="h1" css={css`
+          font-size: 3em;
+        `}>Zbigniew Żołnierowicz</Emphasize>
         <h2>
           A web developer with a penchant for{" "}
           <Emphasize>grilled cheese</Emphasize>{" "}
@@ -171,12 +167,7 @@ export const Home = (_props: RouteComponentProps) => {
           </span>
         </h2>
       </Head>
-      <Section
-        css={css`
-          p {
-          }
-        `}
-      >
+      <Section>
         <Emphasize
           as="h3"
           css={css`

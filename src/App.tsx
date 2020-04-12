@@ -47,9 +47,6 @@ function App() {
             bottom: 0;
             right: 0;
             z-index: 999;
-            border-style: solid;
-            border-color: white;
-            border-width: 1px;
           `}
           buttonType="alt"
           ariaHidden={true}
